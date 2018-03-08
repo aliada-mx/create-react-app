@@ -19,6 +19,7 @@ class App extends Component {
           >
             Learn React
           </a>
+          <h1 className="App-title">Welcome to React by Tandem</h1>
         </header>
       </div>
     );

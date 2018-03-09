@@ -69,6 +69,7 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
   }
   return loaders;
 };
+const bootstrapPath = `${paths.appSrc}/styles/bootstrap`;
 
 // This is the development configuration.
 // It is focused on developer experience and fast rebuilds.

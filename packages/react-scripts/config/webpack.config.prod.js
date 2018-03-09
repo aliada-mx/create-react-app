@@ -101,6 +101,8 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
   return loaders;
 };
 
+const bootstrapPath = `${paths.appSrc}/styles/bootstrap`;
+
 // This is the production configuration.
 // It compiles slowly and is focused on producing a fast and minimal bundle.
 // The development configuration is different and lives in a separate file.

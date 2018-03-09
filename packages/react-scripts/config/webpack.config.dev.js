@@ -30,6 +30,8 @@ const publicUrl = '';
 // Get environment variables to inject into our app.
 const env = getClientEnvironment(publicUrl);
 
+const bootstrapPath = `${paths.appSrc}/styles/bootstrap`;
+
 // This is the development configuration.
 // It is focused on developer experience and fast rebuilds.
 // The production configuration is different and lives in a separate file.
@@ -183,14 +185,14 @@ module.exports = {
           // in development "style" loader enables hot editing of CSS.
           {
             test: /\.(css|sass|scss)$/,
-            include: [paths.appNodeModules],
+            include: [paths.appNodeModules, bootstrapPath],
             use: [
               require.resolve('style-loader'),
               {
                 loader: require.resolve('css-loader'),
                 options: {
                   modules: false,
-                  importLoaders: 1,
+                  importLoaders: 2,
                 },
               },
               {
@@ -220,14 +222,14 @@ module.exports = {
           },
           {
             test: /\.(css|sass|scss)$/,
-            exclude: [paths.appNodeModules],
+            exclude: [paths.appNodeModules, bootstrapPath],
             use: [
               require.resolve('style-loader'),
               {
                 loader: require.resolve('css-loader'),
                 options: {
                   modules: true,
-                  importLoaders: 1,
+                  importLoaders: 2,
                   localIdentName: '[name]___[local]___[hash:base64:3]',
                 },
               },

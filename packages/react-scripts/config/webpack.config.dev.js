@@ -70,6 +70,7 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
   return loaders;
 };
 const bootstrapPath = `${paths.appSrc}/styles/bootstrap`;
+const iconsPath = `${paths.appSrc}/styles/icons`;
 
 // This is the development configuration.
 // It is focused on developer experience and fast rebuilds.
@@ -209,7 +210,17 @@ module.exports = {
           // smaller than specified limit in bytes as data URLs to avoid requests.
           // A missing `test` is equivalent to a match.
           {
-            test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+            test: [
+              /\.bmp$/,
+              /\.gif$/,
+              /\.jpe?g$/,
+              /\.png$/,
+              /\.svg$/,
+              /\.woff$/,
+              /\.woff2$/,
+              /\.ttf$/,
+              /\.eot$/,
+            ],
             loader: require.resolve('url-loader'),
             options: {
               limit: 10000,

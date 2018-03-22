@@ -102,6 +102,7 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
 };
 
 const bootstrapPath = `${paths.appSrc}/styles/bootstrap`;
+const iconsPath = `${paths.appSrc}/styles/icons`;
 
 // This is the production configuration.
 // It compiles slowly and is focused on producing a fast and minimal bundle.
@@ -284,7 +285,17 @@ module.exports = {
           // "url" loader works just like "file" loader but it also embeds
           // assets smaller than specified size as data URLs to avoid requests.
           {
-            test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+            test: [
+              /\.bmp$/,
+              /\.gif$/,
+              /\.jpe?g$/,
+              /\.png$/,
+              /\.svg$/,
+              /\.woff$/,
+              /\.woff2$/,
+              /\.ttf$/,
+              /\.eot$/,
+            ],
             loader: require.resolve('url-loader'),
             options: {
               limit: 10000,

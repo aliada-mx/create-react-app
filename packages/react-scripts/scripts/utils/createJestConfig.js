@@ -75,6 +75,7 @@ module.exports = (resolve, rootDir, srcRoots) => {
     'resetModules',
     'snapshotSerializers',
     'watchPathIgnorePatterns',
+    'testMatch',
   ];
   if (overrides) {
     supportedKeys.forEach(key => {

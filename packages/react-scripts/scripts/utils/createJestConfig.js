@@ -80,6 +80,7 @@ module.exports = (resolve, rootDir, isEjecting) => {
     'resetModules',
     'snapshotSerializers',
     'watchPathIgnorePatterns',
+    'testMatch',
   ];
   if (overrides) {
     supportedKeys.forEach(key => {

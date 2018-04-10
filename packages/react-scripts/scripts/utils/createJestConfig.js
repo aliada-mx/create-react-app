@@ -34,15 +34,13 @@ module.exports = (resolve, rootDir, isEjecting) => {
       '^.+\\.(js|jsx|mjs)$': isEjecting
         ? '<rootDir>/node_modules/babel-jest'
         : resolve('config/jest/babelTransform.js'),
-      '^.+\\.css$': resolve('config/jest/cssTransform.js'),
-      '^(?!.*\\.(js|jsx|mjs|css|json)$)': resolve(
-        'config/jest/fileTransform.js'
-      ),
+      '^(?!.*\\.(js|jsx|mjs|json)$)': resolve('config/jest/fileTransform.js'),
     },
     transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$'],
     moduleNameMapper: {
       '^react-native$': 'react-native-web',
       '^@src(.*)$': '<rootDir>/src$1',
+      '\\.(css|scss)$': 'identity-obj-proxy',
     },
     moduleFileExtensions: [
       'web.js',

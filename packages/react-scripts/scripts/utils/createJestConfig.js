@@ -51,6 +51,7 @@ module.exports = (resolve, rootDir, srcRoots) => {
       '^react-native$': 'react-native-web',
       '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
       '^@src(.*)$': '<rootDir>/src$1',
+      '\\.(css|scss)$': 'identity-obj-proxy',
     },
     moduleFileExtensions: [
       'web.js',

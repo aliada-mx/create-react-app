@@ -104,6 +104,9 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
 const bootstrapPath = `${paths.appSrc}/styles/bootstrap`;
 const iconsPath = `${paths.appSrc}/styles/icons`;
 
+const supportedLocales = paths.supportedLocales.split(/, */);
+const localeFilesRegex = new RegExp(`(${supportedLocales.join('|')}).js$`);
+
 // This is the production configuration.
 // It compiles slowly and is focused on producing a fast and minimal bundle.
 // The development configuration is different and lives in a separate file.
@@ -534,6 +537,19 @@ module.exports = {
         new RegExp('/[^/]+\\.[^/]+$'),
       ],
     }),
+    // Only adds locale files that match regex
+    new webpack.ContextReplacementPlugin(
+      /react-intl[/\\]locale-data$/,
+      localeFilesRegex
+    ),
+    new webpack.ContextReplacementPlugin(
+      /intl[/\\]locale-data[/\\]jsonp$/,
+      localeFilesRegex
+    ),
+    new webpack.ContextReplacementPlugin(
+      /moment[/\\]locale$/,
+      localeFilesRegex
+    ),
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.

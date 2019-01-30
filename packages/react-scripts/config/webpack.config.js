@@ -50,6 +50,10 @@ const cssModuleRegex = /\.module\.css$/;
 const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
 
+// Locale config
+const supportedLocales = paths.supportedLocales.split(/, */);
+const localeFilesRegex = new RegExp(`(${supportedLocales.join('|')}).js$`);
+
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
 module.exports = function(webpackEnv) {
@@ -275,6 +279,8 @@ module.exports = function(webpackEnv) {
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         'react-native': 'react-native-web',
+        // alias src
+        '@src': paths.appSrc,
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
@@ -530,7 +536,6 @@ module.exports = function(webpackEnv) {
             ? {
                 minify: {
                   removeComments: true,
-                  collapseWhitespace: true,
                   removeRedundantAttributes: true,
                   useShortDoctype: true,
                   removeEmptyAttributes: true,
@@ -613,6 +618,22 @@ module.exports = function(webpackEnv) {
             new RegExp('/[^/]+\\.[^/]+$'),
           ],
         }),
+      // Only adds locale files that match regex
+      isEnvProduction &&
+        new webpack.ContextReplacementPlugin(
+          /react-intl[/\\]locale-data$/,
+          localeFilesRegex
+        ),
+      isEnvProduction &&
+        new webpack.ContextReplacementPlugin(
+          /intl[/\\]locale-data[/\\]jsonp$/,
+          localeFilesRegex
+        ),
+      isEnvProduction &&
+        new webpack.ContextReplacementPlugin(
+          /moment[/\\]locale$/,
+          localeFilesRegex
+        ),
       // TypeScript type checking
       useTypeScript &&
         new ForkTsCheckerWebpackPlugin({
